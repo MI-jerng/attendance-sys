@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Student Attendance System</h1>
+            <p>Manage student check-ins and track attendance efficiently</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalStudents">0</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="presentStudents">0</div>
+                <div class="stat-label">Present Today</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="attendanceRate">0%</div>
+                <div class="stat-label">Attendance Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="currentDate"></div>
+                <div class="stat-label">Today's Date</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('checkin')">Check-In</button>
+            <button class="tab" onclick="showTab('dashboard')">Dashboard</button>
+            <button class="tab" onclick="showTab('students')">Students</button>
+            <button class="tab" onclick="showTab('reports')">Reports</button>
+        </div>
+
+        <!-- Check-In Tab -->
+        <div id="checkin" class="tab-content active">
+            <input type="text" class="search-bar" id="searchStudents" placeholder="Search students by name or grade..." onkeyup="filterStudents()">
+            <div id="studentsList"></div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content">
+            <h2>Attendance Dashboard</h2>
+            <div id="dashboardContent"></div>
+        </div>
+
+        <!-- Students Tab -->
+        <div id="students" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>Student Management</h2>
+                <button class="btn btn-primary" onclick="openAddStudentModal()">Add Student</button>
+            </div>
+            <input type="text" class="search-bar" id="searchAllStudents" placeholder="Search students..." onkeyup="filterAllStudents()">
+            <div id="allStudentsList"></div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content">
+            <h2>Attendance Reports</h2>
+            <button class="btn btn-success" onclick="exportToCSV()">Export CSV</button>
+            <div id="reportsContent"></div>
+        </div>
+    </div>
+
+    <!-- Add Student Modal -->
+    <div id="addStudentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddStudentModal()">&times;</span>
+            <h2>Add New Student</h2>
+            <form id="addStudentForm">
+                <div class="form-group">
+                    <label for="studentName">Full Name</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentGrade">Grade</label>
+                    <input type="text" id="studentGrade" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentEmail">Email</label>
+                    <input type="email" id="studentEmail" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Student</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+
